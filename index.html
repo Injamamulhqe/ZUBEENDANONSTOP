@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Zubeen Da Nonstop — timeless Assamese songs and memories.">
+<meta name="theme-color" content="#071426">
+<title>ZUBEEN DA NONSTOP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%}
+body{font-family:"DM Sans",sans-serif;background:#06101e;color:white;overflow:hidden}
+button{font-family:inherit}
+.background{position:fixed;inset:0;background-image:linear-gradient(90deg,rgba(2,12,29,.72) 0%,rgba(2,12,29,.28) 45%,rgba(8,5,20,.45) 100%),linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.55)),url("zg.jpg");background-size:cover;background-position:center;background-repeat:no-repeat;z-index:-5}
+.background::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 35% 25%,rgba(0,174,255,.15),transparent 38%),radial-gradient(circle at 85% 45%,rgba(130,40,190,.16),transparent 35%);pointer-events:none}
+.navbar{position:fixed;top:0;left:0;right:0;height:92px;padding:0 4vw;display:flex;align-items:center;justify-content:space-between;z-index:20}
+.logo{display:flex;align-items:center;gap:13px;user-select:none}
+.logo-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#061426;background:linear-gradient(135deg,#36baff,#147ee8);box-shadow:0 0 25px rgba(22,153,255,.35)}
+.logo-text{font-size:18px;font-weight:700;letter-spacing:.5px}
+.logo-sub{margin-top:2px;font-size:10px;color:rgba(255,255,255,.62);letter-spacing:1.5px}
+.nav-links{display:flex;align-items:center;gap:45px;margin-left:70px}
+.nav-links a{position:relative;text-decoration:none;color:rgba(255,255,255,.82);font-size:15px;font-weight:500;transition:.25s}
+.nav-links a:hover,.nav-links a.active{color:white}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-13px;height:2px;border-radius:10px;background:#24a9ff;box-shadow:0 0 12px #24a9ff}
+.nav-right{display:flex;align-items:center;gap:18px}
+.search-box{width:190px;height:40px;border-radius:25px;display:flex;align-items:center;padding:0 15px;gap:9px;background:rgba(8,23,43,.38);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px)}
+.search-box span{font-size:17px}.search-box input{width:100%;border:none;outline:none;color:white;background:transparent;font-size:12px}.search-box input::placeholder{color:rgba(255,255,255,.55)}
+.social{width:34px;height:34px;border-radius:50%;border:none;background:transparent;color:white;font-size:18px;cursor:pointer;transition:.25s}
+.social:hover{transform:translateY(-2px) scale(1.08);background:rgba(255,255,255,.1)}
+.spotify{color:#35d778}
+.hero{position:fixed;left:7.5vw;top:18vh;z-index:5;max-width:680px}
+.small-title{margin-bottom:14px;font-family:"Playfair Display",serif;font-size:27px;font-style:italic;font-weight:400;letter-spacing:4px;color:rgba(255,255,255,.72);text-shadow:0 0 15px rgba(255,255,255,.15)}
+.hero-title{font-size:clamp(58px,8vw,110px);line-height:.86;font-weight:800;letter-spacing:-4px;color:white;text-transform:uppercase;text-shadow:0 10px 40px rgba(0,0,0,.5)}
+.hero-title span{display:block;color:#38baff;margin-left:35px;margin-top:15px;text-shadow:0 0 30px rgba(38,173,255,.28)}
+.hero-line{margin-top:27px;display:flex;align-items:center;gap:18px;color:rgba(255,255,255,.75);font-size:12px;letter-spacing:5px}
+.hero-line .dot{width:5px;height:5px;border-radius:50%;background:#36baff;box-shadow:0 0 10px #36baff}
+.assamese-title{position:fixed;right:8vw;top:24vh;max-width:210px;z-index:4;transform:rotate(-7deg);font-family:"Playfair Display",serif;font-size:32px;font-style:italic;line-height:1.25;color:rgba(235,220,255,.78);text-align:center;text-shadow:0 4px 25px rgba(0,0,0,.4)}
+.player{position:fixed;left:50%;bottom:48px;transform:translateX(-50%);width:min(1320px,88vw);min-height:185px;display:flex;overflow:hidden;border-radius:25px;background:linear-gradient(120deg,rgba(9,24,45,.90),rgba(18,27,51,.82));border:1px solid rgba(255,255,255,.18);box-shadow:0 30px 80px rgba(0,0,0,.48);backdrop-filter:blur(22px);z-index:30}
+.video-container{width:280px;flex:0 0 280px;background:#02070d;border-right:1px solid rgba(255,255,255,.12);position:relative;overflow:hidden}
+#youtube-player{width:100%;height:157px}
+.watch-youtube{position:absolute;bottom:0;left:0;right:0;height:42px;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:white;font-size:12px;font-weight:600;background:rgba(0,0,0,.62);backdrop-filter:blur(10px);transition:.25s}
+.watch-youtube:hover{background:rgba(0,0,0,.85)}
+.player-main{flex:1;min-width:0;padding:24px 30px}
+.player-top{display:flex;align-items:flex-start;justify-content:space-between}
+.song-title{font-size:20px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:600px}
+.song-subtitle{margin-top:6px;color:rgba(255,255,255,.58);font-size:12px}
+.now-playing{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.68);white-space:nowrap}
+.sound-bars{display:flex;align-items:center;gap:3px;height:24px}
+.sound-bars span{display:block;width:3px;height:10px;border-radius:5px;background:#44baff;animation:sound .8s infinite ease-in-out}
+.sound-bars span:nth-child(2){height:18px;animation-delay:.15s}.sound-bars span:nth-child(3){height:13px;animation-delay:.3s}.sound-bars span:nth-child(4){height:21px;animation-delay:.45s}
+@keyframes sound{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+.progress-area{margin-top:19px;display:flex;align-items:center;gap:10px}
+.time{width:35px;color:rgba(255,255,255,.55);font-size:11px;font-variant-numeric:tabular-nums}
+.progress{position:relative;height:5px;flex:1;background:rgba(255,255,255,.18);border-radius:10px;cursor:pointer}
+.progress-fill{position:absolute;left:0;top:0;height:100%;width:0%;border-radius:10px;background:linear-gradient(90deg,#149fff,#8bcfff);box-shadow:0 0 10px rgba(26,160,255,.5)}
+.progress-dot{position:absolute;top:50%;left:0%;width:13px;height:13px;transform:translate(-50%,-50%);border-radius:50%;background:white;box-shadow:0 0 10px rgba(255,255,255,.5)}
+.controls{display:flex;align-items:center;margin-top:17px;gap:23px}
+.control{width:35px;height:35px;display:flex;align-items:center;justify-content:center;border:none;border-radius:50%;background:transparent;color:rgba(255,255,255,.82);cursor:pointer;font-size:19px;transition:transform .2s,color .2s,background .2s}
+.control:hover{color:white;transform:scale(1.1);background:rgba(255,255,255,.08)}
+.play-button{width:52px;height:52px;border-radius:50%;border:none;background:white;color:#061426;font-size:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.25);transition:transform .2s}
+.play-button:hover{transform:scale(1.08)}
+.external-buttons{margin-left:auto;display:flex;gap:12px}
+.external{height:43px;padding:0 18px;display:flex;align-items:center;gap:9px;border-radius:25px;background:rgba(255,255,255,.025);color:white;border:1px solid rgba(255,255,255,.22);cursor:pointer;font-size:12px;transition:.25s}
+.external:hover{background:rgba(255,255,255,.10);transform:translateY(-2px)}
+.spotify-btn{border-color:rgba(45,220,116,.55);color:#42df7b}.ytmusic-btn{border-color:rgba(255,70,70,.48);color:#ff6b6b}
+.bottom-left,.bottom-center,.bottom-right{position:fixed;z-index:10;color:rgba(255,255,255,.55);font-size:9px;letter-spacing:3px;text-transform:uppercase}
+.bottom-left{left:3vw;bottom:18px}.bottom-center{left:50%;bottom:17px;transform:translateX(-50%);text-align:center}.bottom-right{right:3vw;bottom:18px}
+.scroll-arrow{display:block;font-size:20px;margin-bottom:2px;color:white}
+.loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#06101e;z-index:100;transition:opacity .5s ease}
+.loading.hidden{opacity:0;pointer-events:none}
+.loader{text-align:center}.loader-icon{font-size:45px;animation:pulse 1.3s infinite ease-in-out}.loader-text{margin-top:15px;font-size:12px;letter-spacing:4px;color:rgba(255,255,255,.7)}
+@keyframes pulse{0%,100%{transform:scale(.9);opacity:.55}50%{transform:scale(1.1);opacity:1}}
+
+@media(max-width:900px){
+body{overflow:auto}
+.navbar{height:72px;padding:0 18px}
+.logo-text{font-size:14px}.logo-sub{font-size:8px}.logo-icon{width:36px;height:36px}
+.nav-links{display:none}.search-box{display:none}
+.hero{left:25px;right:25px;top:16vh;max-width:none;text-align:center}
+.small-title{font-size:18px;letter-spacing:2px}
+.hero-title{font-size:clamp(48px,14vw,80px);letter-spacing:-2px}
+.hero-title span{margin-left:0}
+.hero-line{justify-content:center;gap:10px;font-size:8px;letter-spacing:2px}
+.assamese-title{display:none}
+.player{width:calc(100vw - 20px);bottom:10px;min-height:160px;border-radius:18px}
+.video-container{width:130px;flex:0 0 130px}
+#youtube-player{height:118px}
+.watch-youtube{height:42px;font-size:9px}
+.player-main{padding:14px}
+.song-title{font-size:14px;max-width:45vw}.song-subtitle{font-size:9px}
+.now-playing{font-size:7px;gap:6px}.sound-bars{display:none}
+.progress-area{margin-top:12px}.controls{gap:5px;margin-top:10px}
+.control{width:28px;height:28px;font-size:15px}.play-button{width:40px;height:40px;font-size:17px}
+.external-buttons{display:none}
+.bottom-left,.bottom-right,.bottom-center{display:none}
+}
+@media(max-width:500px){
+.video-container{width:105px;flex-basis:105px}#youtube-player{height:110px}.player{min-height:150px}
+.song-title{max-width:42vw}.control:nth-child(1){display:none}
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="loading" id="loading">
+    <div class="loader">
+        <div class="loader-icon">♪</div>
+        <div class="loader-text">ZUBEEN DA NONSTOP</div>
+    </div>
+</div>
+
+<header class="navbar">
+    <div class="logo">
+        <div class="logo-icon">♪</div>
+        <div>
+            <div class="logo-text">ZUBEEN DA NONSTOP</div>
+            <div class="logo-sub">ASSAMESE NOSTALGIA • TIMELESS SONGS</div>
+        </div>
+    </div>
+
+    <nav class="nav-links">
+        <a href="#" class="active">Home</a>
+        <a href="#playlist">Playlist</a>
+        <a href="#about">About</a>
+    </nav>
+
+    <div class="nav-right">
+        <div class="search-box">
+            <span>⌕</span>
+            <input id="searchInput" type="text" placeholder="Search songs...">
+        </div>
+
+        <button class="social" onclick="openYouTube()" title="YouTube">▶</button>
+        <button class="social spotify" onclick="openSpotify()" title="Spotify">●</button>
+        <button class="social" onclick="openInstagram()" title="Instagram">◎</button>
+        <button class="social" onclick="showInfo()" title="More">⋮</button>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="small-title">Music Lives Forever</div>
+
+        <h1 class="hero-title">
+            ZUBEEN DA
+            <span>NONSTOP</span>
+        </h1>
+
+        <div class="hero-line">
+            <span>HIS VOICE</span>
+            <span class="dot"></span>
+            <span>OUR EMOTIONS</span>
+            <span class="dot"></span>
+            <span>ALWAYS</span>
+        </div>
+    </section>
+
+    <div class="assamese-title">
+        সুৰ<br>
+        স্মৃতি<br>
+        আৰু<br>
+        হৃদয়ত...
+        <div style="font-size:25px;">♡</div>
+    </div>
+</main>
+
+<section class="player">
+
+    <div class="video-container">
+        <div id="youtube-player"></div>
+
+        <a id="watchYoutube"
+           class="watch-youtube"
+           href="#"
+           target="_blank"
+           rel="noopener noreferrer">
+            ▶ &nbsp; Watch on YouTube
+        </a>
+    </div>
+
+    <div class="player-main">
+
+        <div class="player-top">
+            <div>
+                <div class="song-title" id="songTitle">Zubeen Da Nonstop</div>
+                <div class="song-subtitle" id="songSubtitle">
+                    Zubeen Da Nonstop Playlist
+                </div>
+            </div>
+
+            <div class="now-playing">
+                <div class="sound-bars">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                NOW PLAYING
+                <span>⌄</span>
+            </div>
+        </div>
+
+        <div class="progress-area">
+            <span class="time" id="currentTime">0:00</span>
+
+            <div class="progress" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+                <div class="progress-dot" id="progressDot"></div>
+            </div>
+
+            <span class="time" id="duration">0:00</span>
+        </div>
+
+        <div class="controls">
+
+            <button class="control" id="shuffleButton" title="Shuffle">🔀</button>
+
+            <button class="control" id="previousButton" title="Previous">⏮</button>
+
+            <button class="play-button" id="playButton" title="Play">▶</button>
+
+            <button class="control" id="nextButton" title="Next">⏭</button>
+
+            <button class="control" id="muteButton" title="Mute">🔊</button>
+
+            <div class="external-buttons">
+                <button class="external spotify-btn" id="spotifyButton">
+                    <strong>●</strong> Spotify ↗
+                </button>
+
+                <button class="external ytmusic-btn" id="ytMusicButton">
+                    <strong>▶</strong> YT Music ↗
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="bottom-left">
+    A TRIBUTE TO ZUBEEN GARG &nbsp; ♥ &nbsp; FOREVER IN OUR HEARTS
+</div>
+
+<div class="bottom-center">
+    <span class="scroll-arrow">↓</span>
+    SCROLL TO EXPLORE
+</div>
+
+<div class="bottom-right">
+    MUSIC &nbsp; • &nbsp; MEMORIES &nbsp; • &nbsp; NONSTOP
+</div>
+
+<script>
+const PLAYLIST_ID = "PL-FJmyUJjhFA24yPlwo39dxxwo-tAQZ6N";
+let player = null;
+let progressTimer = null;
+
+function loadYouTubeAPI() {
+    const script = document.createElement("script");
+    script.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(script);
+}
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player("youtube-player", {
+        width: "280",
+        height: "157",
+        playerVars: {
+            listType: "playlist",
+            list: PLAYLIST_ID,
+            playsinline: 1,
+            controls: 0,
+            rel: 0,
+            modestbranding: 1,
+            enablejsapi: 1
+        },
+        events: {
+            onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange,
+            onError: onPlayerError
+        }
+    });
+}
+
+function onPlayerReady() {
+    updateSongInformation();
+    startProgressUpdater();
+
+    setTimeout(() => {
+        document.getElementById("loading").classList.add("hidden");
+    }, 900);
+}
+
+function onPlayerStateChange(event) {
+    if (!player) return;
+
+    if (event.data === YT.PlayerState.PLAYING) {
+        document.getElementById("playButton").textContent = "Ⅱ";
+    } else {
+        document.getElementById("playButton").textContent = "▶";
+    }
+
+    if (
+        event.data === YT.PlayerState.PLAYING ||
+        event.data === YT.PlayerState.CUED
+    ) {
+        updateSongInformation();
+    }
+}
+
+function onPlayerError(event) {
+    console.log("YouTube Player Error:", event.data);
+    document.getElementById("songSubtitle").textContent =
+        "This video cannot be embedded by YouTube.";
+}
+
+function updateSongInformation() {
+    if (!player || !player.getVideoData) return;
+
+    const data = player.getVideoData();
+
+    if (!data || !data.video_id) return;
+
+    const title = data.title || "Zubeen Da Nonstop";
+
+    document.getElementById("songTitle").textContent = title;
+
+    document.getElementById("songSubtitle").textContent =
+        "Zubeen Da • Assamese Nostalgia";
+
+    document.getElementById("watchYoutube").href =
+        "https://www.youtube.com/watch?v=" + data.video_id;
+}
+
+document.getElementById("playButton").addEventListener("click", () => {
+    if (!player) return;
+
+    const state = player.getPlayerState();
+
+    if (state === YT.PlayerState.PLAYING) {
+        player.pauseVideo();
+    } else {
+        player.playVideo();
+    }
+});
+
+document.getElementById("previousButton").addEventListener("click", () => {
+    if (player) player.previousVideo();
+});
+
+document.getElementById("nextButton").addEventListener("click", () => {
+    if (player) player.nextVideo();
+});
+
+document.getElementById("muteButton").addEventListener("click", function() {
+    if (!player) return;
+
+    if (player.isMuted()) {
+        player.unMute();
+        this.textContent = "🔊";
+    } else {
+        player.mute();
+        this.textContent = "🔇";
+    }
+});
+
+let shuffled = false;
+
+document.getElementById("shuffleButton").addEventListener("click", function() {
+    shuffled = !shuffled;
+    this.style.color = shuffled ? "#38baff" : "";
+});
+
+function startProgressUpdater() {
+    if (progressTimer) clearInterval(progressTimer);
+    progressTimer = setInterval(updateProgress, 500);
+}
+
+function updateProgress() {
+    if (!player || !player.getCurrentTime) return;
+
+    const current = player.getCurrentTime() || 0;
+    const duration = player.getDuration() || 0;
+
+    const percentage = duration > 0
+        ? Math.min(100, (current / duration) * 100)
+        : 0;
+
+    document.getElementById("currentTime").textContent = formatTime(current);
+    document.getElementById("duration").textContent = formatTime(duration);
+    document.getElementById("progressFill").style.width = percentage + "%";
+    document.getElementById("progressDot").style.left = percentage + "%";
+}
+
+function formatTime(seconds) {
+    if (!isFinite(seconds) || seconds < 0) return "0:00";
+
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+
+    return minutes + ":" + String(remainingSeconds).padStart(2, "0");
+}
+
+document.getElementById("progressBar").addEventListener("click", function(event) {
+    if (!player) return;
+
+    const rect = this.getBoundingClientRect();
+
+    const position = Math.max(
+        0,
+        Math.min(1, (event.clientX - rect.left) / rect.width)
+    );
+
+    const duration = player.getDuration();
+
+    player.seekTo(duration * position, true);
+});
+
+document.getElementById("spotifyButton").addEventListener("click", () => {
+    const title = document.getElementById("songTitle").textContent;
+
+    window.open(
+        "https://open.spotify.com/search/" + encodeURIComponent(title),
+        "_blank",
+        "noopener"
+    );
+});
+
+document.getElementById("ytMusicButton").addEventListener("click", () => {
+    const title = document.getElementById("songTitle").textContent;
+
+    window.open(
+        "https://music.youtube.com/search?q=" + encodeURIComponent(title),
+        "_blank",
+        "noopener"
+    );
+});
+
+function openYouTube() {
+    window.open(
+        "https://www.youtube.com/playlist?list=" + PLAYLIST_ID,
+        "_blank"
+    );
+}
+
+function openSpotify() {
+    window.open(
+        "https://open.spotify.com/search/Zubeen%20Garg",
+        "_blank"
+    );
+}
+
+function openInstagram() {
+    window.open(
+        "https://www.instagram.com/",
+        "_blank"
+    );
+}
+
+function showInfo() {
+    alert(
+        "ZUBEEN DA NONSTOP\n\n" +
+        "A tribute to the timeless voice and music of Zubeen Da.\n\n" +
+        "Enjoy the playlist and relive the memories."
+    );
+}
+
+document.getElementById("searchInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        const query = this.value.trim();
+
+        if (!query) return;
+
+        window.open(
+            "https://www.youtube.com/results?search_query=" +
+            encodeURIComponent(query),
+            "_blank"
+        );
+    }
+});
+
+loadYouTubeAPI();
+</script>
+
+</body>
+</html>
